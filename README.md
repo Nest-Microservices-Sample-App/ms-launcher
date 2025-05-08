@@ -1,31 +1,31 @@
 ### Pasos para crear los Git Submodules
 
 
-1. Crear un nuevo repositorio en GitHub
-2. Clonar el repositorio en la máquina local
-3. Añadir el submodule, donde `repository_url` es la url del repositorio y `directory_name` es el nombre de la carpeta donde quieres que se guarde el sub-módulo (no debe de existir en el proyecto)
+1. Clone repo from Github
+2. Run `git submodule update --recursive` to download submodules
+3. Add the submodule, where `repository_url` is the URL of the repository and `directory_name` is the name of the folder where you want the submodule to be saved (the folder must not already exist in the project)
 ```
 git submodule add <repository_url> <directory_name>
 ```
-4. Añadir los cambios al repositorio (git add, git commit, git push)
-Ej:
+4. Add the changes to the repository (git add, git commit, git push)
+Example:
 ```
 git add .
 git commit -m "Add submodule"
 git push
 ```
-5. Inicializar y actualizar Sub-módulos, cuando alguien clona el repositorio por primera vez, debe de ejecutar el siguiente comando para inicializar y actualizar los sub-módulos
+5. Initialize and update submodules: when someone clones the repository for the first time, they must run the following command to initialize and update the submodules
+
 ```
 git submodule update --init --recursive
 ```
-6. Para actualizar las referencias de los sub-módulos
+6. To update the submodule references
 ```
 git submodule update --remote
 ```
 
+## Important
+If you are working in the repository that contains submodules, **first update and push** the submodule, and **then** push the main repository.
 
-## Importante
-Si se trabaja en el repositorio que tiene los sub-módulos, **primero actualizar y hacer push** en el sub-módulo y **después** en el repositorio principal. 
-
-Si se hace al revés, se perderán las referencias de los sub-módulos en el repositorio principal y tendremos que resolver conflictos.
+If you do it the other way around, the main repository will lose the submodule references, and you'll have to resolve conflicts.
 
